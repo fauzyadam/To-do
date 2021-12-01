@@ -1,4 +1,6 @@
 
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 class SplashScreen extends StatelessWidget {
   const SplashScreen({ Key? key }) : super(key: key);
@@ -8,7 +10,7 @@ class SplashScreen extends StatelessWidget {
     return  Scaffold(
       appBar: AppBar(
           title:  const Text(
-            "linked compus",
+            "linked compus", 
             style: TextStyle(
             fontSize: 25.0,
             fontWeight: FontWeight.bold,
@@ -18,7 +20,36 @@ class SplashScreen extends StatelessWidget {
             ),
           ),
           centerTitle:true,
-),
+      ),
+      body: ListView.separated(
+        padding: const EdgeInsets.all(2.0),
+        itemBuilder: (BuildContext context, int index){
+          return const ListTile(
+            leading: (
+              CircleAvatar(
+                radius: 25.0,
+                backgroundColor: Colors.orange,
+                backgroundImage: AssetImage("Assets/images/todo 3.jpg"),
+              )
+            ),
+          title: Text("that baby"),
+           subtitle: Text("is my baby"),
+           trailing: Icon(Icons.favorite, color: Colors.black12, size: 20.0, semanticLabel: "play",),
+          );
+           },
+          separatorBuilder: (BuildContext context, int index) {
+            return const Divider(
+              height: 20.0,
+              thickness: 5.0,
+              indent: 10.0,
+              endIndent: 10.0,
+              color: Colors.cyan,
+);
+          },
+      itemCount: 10,
+      
+      ),
+
    bottomNavigationBar: BottomNavigationBar(
      currentIndex: 0,
      fixedColor: Colors.blue,
