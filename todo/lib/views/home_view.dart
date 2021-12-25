@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:todo/views/create_todo_view.dart';
-
 import 'custom_widgets/padding_with_text.dart';
 
 class HomeView extends StatelessWidget {
@@ -12,11 +11,129 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return   Scaffold(
-      backgroundColor: const Color.fromRGBO(250,250, 225, 1),
+     backgroundColor: const Color.fromRGBO(250,250, 225, 1),
+     drawer:  Drawer(
+       child: Container(
+         color: const Color.fromRGBO(14, 31, 45, 1),
+         child: Column(
+           children:  [
+             Container(
+              margin: const EdgeInsets.fromLTRB(0, 50, 20, 0),
+              alignment: Alignment.topRight,
+               child: SizedBox(
+                 height: 60,
+                 width: 60,
+                 child: InkWell(
+                   onTap: () => Navigator.of(context).pop(),
+                   child: const Card(
+                     color: Color.fromRGBO(14, 31, 45, 1),
+                     shape: CircleBorder(
+                       side: BorderSide(
+                         width: 1,
+                         color: Colors.white,
+                       ),
+                     ),
+                     child: Icon(
+                       Icons.arrow_back_ios,
+                       size: 24,
+                       color: Colors.white,
+                       ),
+                   ),
+                 ),
+               ),
+             ),
+             CircularPercentIndicator(
+               radius: 120,
+               progressColor: Colors.pink,
+               animation: false,
+               lineWidth: 3,
+               percent: 0.6,
+               center: const CircleAvatar(
+               radius: 50,
+               backgroundImage: AssetImage(
+                 "assets/images/kaba.jpg"
+
+               ),
+             ), 
+
+             ),
+             Container(
+               margin: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+               child: const Text(
+                 "HOLY KABA",
+                 style: TextStyle(
+                   color: Colors.white,
+                   fontSize: 25,
+                   fontWeight: FontWeight.bold,
+                 )  
+               ),
+              ),
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: const  [
+    RowWithIconAndText(
+      
+      text: "Template",
+      icon: Icons.bookmark_border_outlined,
+    ),
+    RowWithIconAndText(
+      text: "Categories",
+      icon: Icons.grid_view_outlined,
+    ),
+    RowWithIconAndText(
+      text: "Analytics",
+      icon: Icons.pie_chart_outline
+    ),
+    RowWithIconAndText(
+      text: "Settings",
+      icon: Icons.settings,
+    )
+  ],  
+),
+const SizedBox(
+  height: 20,
+),
+LinearPercentIndicator(
+  percent: 1.0,
+  lineHeight: 15,
+  fillColor: Colors.blue,
+),
+const SizedBox(
+  height: 20,
+),
+Column(
+  children:const  [
+     Text(
+      "Good",
+      style: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+         ),
+    ),
+    SizedBox(
+      height: 20,
+    ),
+    Text(
+      "Consistency",
+      style: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.bold,
+        color: Colors.white
+      ),
+    )
+  ],
+)
+           
+           ],
+         ),
+       ),
+     ),
+
       appBar: AppBar(
-        leading: const Icon(Icons.menu,size: 30.0,
-        color: Colors.grey,),
-        
+       iconTheme: const IconThemeData(
+         color: Colors.grey,
+       ), 
         backgroundColor: const Color.fromRGBO(250,250, 225, 1),
       actions: const [
         IconButton(onPressed: null, icon: Icon(Icons.search_outlined)),]
@@ -58,9 +175,7 @@ class HomeView extends StatelessWidget {
                 height:  MediaQuery.of(context).size.width * 0.25,
                 child: Padding(
                   padding: const EdgeInsets.all(18.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Card(
+                  child:  Card(
                       elevation: 0,
                      color: Colors.white24,
                      child: Column(
@@ -81,7 +196,7 @@ class HomeView extends StatelessWidget {
                       )
                            ]  
                             ) ),
-                      ) ),  
+                       ),  
                        ) ],
                         ),
                         const  Padding(
@@ -155,6 +270,47 @@ class HomeView extends StatelessWidget {
 
   }}
 
+class RowWithIconAndText extends StatelessWidget {
+  final IconData? icon;
+  final String? text;
+
+
+  const RowWithIconAndText({ Key? key,
+  required this.icon,
+  required this.text,
+   }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children:[
+          Icon(
+            icon,
+            size:  30,
+            color: Colors.white,
+            ),
+          const SizedBox(
+              width: 15,
+            ),
+          Text(
+        text.toString(),
+        style: const TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          color: Color.fromRGBO(233, 235, 253, 1),
+        ),
+
+          ),
+         
+        ],
+      ),
+    );
+  }
+}
+
 class CardCategory extends StatelessWidget {
   final String? tasks;
   final String? mainText;
@@ -176,9 +332,7 @@ class CardCategory extends StatelessWidget {
       height:  MediaQuery.of(context).size.width * 0.25,
       child: Padding(
         padding: const EdgeInsets.all(18.0),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(20),
-          child: Card(
+        child:  Card(
             elevation: 0,
            color: Colors.white24,
            child: Column(
@@ -206,7 +360,7 @@ class CardCategory extends StatelessWidget {
               progressColor: Colors.pink,
             )
                  ]   )),
-        )
+        
           ),
      
         );

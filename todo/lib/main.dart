@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todo/fauzia.dart';
-// import 'package:todo/fauzia.dart';
 import 'package:todo/views/home_view.dart';
+
 void main() {
   runApp(const LinkedCompusApp());
 }
@@ -13,6 +12,7 @@ class LinkedCompusApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'linked compus',
       theme: ThemeData(
         // This is the theme of your application.
@@ -26,7 +26,7 @@ class LinkedCompusApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const HomeView(),
+      home:const HomeView(),
       color: Colors.amber,
     );
   }
